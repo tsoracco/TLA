@@ -1,6 +1,6 @@
 %{
-	#include "./creacionNodos.h"
-	#include "./generarCodigoC.h"
+	#include "./nodeCreator.h"
+	#include "./generateCode.h"
 	#define NULL 0
 	extern int yylineno;
 	void yyerror(NodeList **, char *);
@@ -108,7 +108,7 @@ or_op:
 
 cond_op:
 	  or_op { $$ = $1; }
-	| or_op THEN exp COLON cond_op { $$ = condicional($1, $3, $5); }
+	| or_op THEN exp COLON cond_op { $$ = toCond($1, $3, $5); }
 	;
 
 assign_op:
