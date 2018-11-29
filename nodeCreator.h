@@ -7,7 +7,7 @@
 #define FALSE 0
 
 StringNode *toString(const char *str);
-ConsNode *valConstant(const char *cons);
+ConstNode *valConstant(const char *cons);
 VarNode *valVariable(const char *var);
 OpNode *valOp(const Node *first, const Node *sec, const char *op);
 CondNode *toCond(const Node *first, const Node *sec, const Node *third);
