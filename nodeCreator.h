@@ -1,7 +1,7 @@
 #ifndef _NODE_CREATOR_H
 #define _NODE_CREATOR_H
 
-#include "Nodes.h"
+#include "nodes.h"
 
 #define TRUE 1
 #define FALSE 0
