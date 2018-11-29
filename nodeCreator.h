@@ -20,6 +20,6 @@ BlockNode *block(const NodeList *ins);
 Node *empty();
 InstrNode *instr(Node *ins);
 NotNode *toNot(Node *exp);
-PrintNode *imprimir(Node *exp);
+PrintNode *print(Node *exp);
 
 #endif
