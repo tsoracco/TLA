@@ -33,4 +33,6 @@ char *reducePrintNode(Node *node);
 static char *eval(Node *node);
 char *generateCode(Node *node);
 
+int countDigits(int n);
+
 #endif
