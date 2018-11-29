@@ -12,6 +12,7 @@ typedef enum
   EMPTY_NODE,
   IF_NODE,
   WHILE_NODE,
+  FOR_NODE,
   RET_NODE,
   INSTR_LIST_NODE,
   INSTR_NODE,
@@ -80,6 +81,15 @@ typedef struct WhileNode
 {
   NodeType type;
   Node *cond;
+  Node *block;
+} WhileNode;
+
+typedef struct ForNode
+{
+  NodeType type;
+  char *var;
+  int min;
+  int max;
   Node *block;
 } WhileNode;
 

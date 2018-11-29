@@ -13,6 +13,7 @@ OpNode *valOp(const Node *first, const Node *sec, const char *op);
 CondNode *toCond(const Node *first, const Node *sec, const Node *third);
 IfNode *toIf(const Node *cond, const Node *then, const Node *ifnot);
 WhileNode *toWhile(const Node *cond, const Node *block);
+ForNode *toFor(const char *var, const int min, const int max, const Node *block);
 NodeList *instrList(const Node *node);
 NodeList *addInstr(const NodeList *lista, const Node *node);
 RetNode *ret(const Node *exp);

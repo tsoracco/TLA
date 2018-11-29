@@ -20,7 +20,7 @@
 %token LESS GREATER OPEN_BRACE CLOSE_BRACE
 %token PARENTH_OPEN PARENTH_CLOSE
 %token COMMA COLON NOT SUB SUM DIV MULT MOD THEN
-%token IF ELSE RETURN WHILE
+%token IF ELSE RETURN WHILE FOR IN DOT
 %token PRINT ASSIGN
 
 %type <node> primary_exp r_exp mult_op
@@ -149,12 +149,13 @@ instructions:
 	;
 
 cond_block:
-	  IF PARENTH_OPEN exp PARENTH_CLOSE braces { $$ = si($3, $5, NULL); }
-	| IF PARENTH_OPEN exp PARENTH_CLOSE braces ELSE braces { $$ = si($3, $5, $7); }
+	  IF PARENTH_OPEN exp PARENTH_CLOSE braces { $$ = toIf($3, $5, NULL); }
+	| IF PARENTH_OPEN exp PARENTH_CLOSE braces ELSE braces { $$ = toIf($3, $5, $7); }
 	;
 
 cycle_block:
-	WHILE PARENTH_OPEN exp PARENTH_CLOSE braces { $$ = toWhile($3, $5); }
+	  WHILE PARENTH_OPEN exp PARENTH_CLOSE braces { $$ = toWhile($3, $5); }
+	| FOR PARENTH_OPEN VAR IN NUMBER DOT DOT NUMBER PARENTH_CLOSE braces { $$ = toFor($3, $5, $8, $10); }
 	;
 
 ret_block:

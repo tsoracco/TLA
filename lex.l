@@ -19,6 +19,9 @@ exit        ("exit")
 "else"			{ return(ELSE);	}
 "return"		{ return(RETURN); }
 "while"			{ return(WHILE); }
+"for"			{ return(FOR); }
+"in"			{ return(IN); }
+"."			{ return(DOT); }
 "print"			{ return(PRINT); }
 "="				{ return(ASSIGN); }
 "+="			{ return(SUM_ASSIGN); }
