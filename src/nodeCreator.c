@@ -149,22 +149,22 @@ PrintNode *print(Node *exp)
   return node;
 }
 
-StackNode *toStack(Node *cons)
+StackNode *toStack(ConstNode *cons)
 {
   StackNode *node = malloc(sizeof(StackNode));
   node->type = STACK_NODE;
   node->list = newList();
-  ret = push(node->list, cons->cons, sizeof(cons->cons));
+  int ret = push(node->list, cons->cons, sizeof(cons->cons));
   node->size = ret;
   return node;
 }
 
-QueueNode *toQueue(Node *cons)
+QueueNode *toQueue(ConstNode *cons)
 {
   QueueNode *node = malloc(sizeof(QueueNode));
   node->type = QUEUE_NODE;
   node->list = newList();
-  ret = queue(node->list, cons->cons, sizeof(cons->cons));
+  int ret = queue(node->list, cons->cons, sizeof(cons->cons));
   node->size = ret;
   node->size = 0;
   return node;

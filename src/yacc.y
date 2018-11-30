@@ -44,7 +44,7 @@
 
 primary_exp:
 	  const { $$ = $1; }
-	| STRING { $$ = valString($1); }
+	| STRING { $$ = toString($1); }
 	| PARENTH_OPEN exp PARENTH_CLOSE { $$ = $2; }
 	;
 
@@ -71,7 +71,7 @@ r_exp:
 
 basic_exp:
 	  r_exp { $$ = $1; }
-	| NOT r_exp { $$ = valNot($2); }
+	| NOT r_exp { $$ = toNot($2); }
 	;
 
 mult_op:
@@ -145,7 +145,7 @@ block:
 	| cycle_block { $$ = $1; }
 	| ret_block { $$ = $1; }
 	| print_block { $$ = $1; }
-	| exp  { $$ = instr($1); }
+	| exp  { $$ = toInstr($1); }
 	| NEWLINE { $$ = empty(); }
 	;
 
@@ -170,11 +170,11 @@ cycle_block:
 	;
 
 ret_block:
-	RETURN PARENTH_OPEN exp PARENTH_CLOSE { $$ = toRet($3); }
+	RETURN PARENTH_OPEN exp PARENTH_CLOSE { $$ = ret($3); }
 	;
 
 print_block:
-	PRINT PARENTH_OPEN exp PARENTH_CLOSE { $$ = toPrint($3); }
+	PRINT PARENTH_OPEN exp PARENTH_CLOSE { $$ = print($3); }
 	;
 
 %%

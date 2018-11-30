@@ -23,7 +23,7 @@ reductor reductors[] = {
     reduceInstrListNode,
     reduceInstrNode,
     reduceNotNode,
-    reducePrintNode
+    reducePrintNode,
     reduceStackNode,
     reduceQueueNode
   };
@@ -311,6 +311,7 @@ char *reducePrintNode(Node *node)
 
   return buffer;
 }
+/*
 
 char *reduceStringNode(Node *node)
 {
@@ -322,14 +323,19 @@ char *reduceStringNode(Node *node)
 
   return buffer;
 }
+*/
 
 char *reduceStackNode(Node *node)
 {
   listADT list = newList(); 
+  return 0;
 }
 
 
-char *reduceQueueNode(Node *node){
+char *reduceQueueNode(Node *node)
+{
+
+  return 0;
   
 }
 

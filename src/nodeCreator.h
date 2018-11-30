@@ -6,7 +6,7 @@
 #define TRUE 1
 #define FALSE 0
 
-StringNode *valString(const char *str);
+StringNode *toString(const char *str);
 ConstNode *valConstant(const char *cons);
 VarNode *valVariable(const char *var);
 OpNode *valOp(const Node *first, const Node *sec, const char *op);
@@ -16,6 +16,7 @@ WhileNode *toWhile(const Node *cond, const Node *block);
 ForNode *toFor(const char *var, const int min, const int max, const Node *block);
 NodeList *instrList(const Node *node);
 NodeList *addInstr(const NodeList *lista, const Node *node);
+InstrNode *toInstr(Node *instr);
 RetNode *ret(const Node *exp);
 BlockNode *block(const NodeList *ins);
 Node *empty();
