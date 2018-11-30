@@ -6,7 +6,7 @@
 #define TRUE 1
 #define FALSE 0
 
-StringNode *toString(const char *str);
+StringNode *valString(const char *str);
 ConstNode *valConstant(const char *cons);
 VarNode *valVariable(const char *var);
 OpNode *valOp(const Node *first, const Node *sec, const char *op);
