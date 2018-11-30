@@ -17,6 +17,7 @@ reductor reductors[] = {
     reduceEmptyNode,
     reduceIfNode,
     reduceWhileNode,
+    reduceForNode
     reduceRetNode,
     reduceInstrListNode,
     reduceInstrNode,
@@ -198,6 +199,23 @@ char *reduceWhileNode(Node *node)
   return buffer;
 }
 
+char *reduceForNode(Node *node)
+{
+  ForNode *nodeValue = (ForNode *)node;
+
+  char *var = nodeValue->var;
+  int min = nodeValue->min;
+  int max=nodeValue->max;
+  char *block = eval(nodeValue->block);
+
+  const size_t tokenLen = strlen("for(int %s = %d; %s <= %d; %s++) {%s}");
+  const size_t bufferLen = strlen(var) + countDigits(min) + countDigits(max) + strlen(block) + tokenLen + 1;
+  char *buffer = malloc(bufferLen);
+  snprintf(buffer, bufferLen, "for(int %s = %d; %s <= %d; %s++) {%s}", var, min, var, max, var, block);
+
+  return buffer;
+}
+
 char *reduceRetNode(Node *node)
 {
   RetNode *nodeValue = (RetNode *)node;
@@ -303,9 +321,21 @@ static char *eval(Node *node)
   return reductors[node->type](node);
 }
 
+int countDigits(int n) {
+  int count = 0;
+
+  while(n != 0)
+  {
+      n /= 10;
+      ++count;
+  }
+
+  return count;
+}
+
 // Genera el code C
 
-char *generarCodigoC(Node *node)
+char *generateCode(Node *node)
 {
   for (int i = 0; i < MAX_VARS; i++)
   {
