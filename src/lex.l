@@ -21,7 +21,9 @@ exit        ("exit")
 "while"			{ return(WHILE); }
 "for"			{ return(FOR); }
 "in"			{ return(IN); }
-"."			{ return(DOT); }
+".."			{ return(TWO_DOTS); }
+"do"			{ return(DO); }
+"end"			{ return(END); }
 "print"			{ return(PRINT); }
 "="				{ return(ASSIGN); }
 "+="			{ return(SUM_ASSIGN); }
