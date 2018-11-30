@@ -21,7 +21,7 @@
 %token PARENTH_OPEN PARENTH_CLOSE
 %token COMMA COLON NOT SUB SUM DIV MULT MOD THEN
 %token IF ELSE RETURN WHILE FOR IN DOT
-%token PRINT ASSIGN
+%token PRINT ASSIGN DO END TWO_DOTS
 
 %type <node> primary_exp r_exp mult_op
 %type <node> sum_op rel_op eq_op
@@ -150,8 +150,8 @@ block:
 	;
 
 braces:
-	  OPEN_BRACE CLOSE_BRACE { $$ = instrList(NULL); }
-	| OPEN_BRACE instructions CLOSE_BRACE { $$ = $2; }
+	 DO END { $$ = instrList(NULL); }
+	| DO instructions END { $$ = $2; }
 	;
 
 instructions:
@@ -166,7 +166,7 @@ cond_block:
 
 cycle_block:
 	  WHILE PARENTH_OPEN exp PARENTH_CLOSE braces { $$ = toWhile($3, $5); }
-	| FOR PARENTH_OPEN VAR IN NUMBER DOT DOT NUMBER PARENTH_CLOSE braces { $$ = toFor($3, $5, $8, $10); }
+	| FOR PARENTH_OPEN VAR IN NUMBER TWO_DOTS NUMBER PARENTH_CLOSE braces { $$ = toFor($3, $5, $8, $10); }
 	;
 
 ret_block:

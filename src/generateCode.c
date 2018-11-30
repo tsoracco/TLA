@@ -212,10 +212,10 @@ char *reduceForNode(Node *node)
   int max=nodeValue->max;
   char *block = eval(nodeValue->block);
 
-  const size_t tokenLen = strlen("for(int %s = %d; %s <= %d; %s++) {%s}");
+  const size_t tokenLen = strlen("for(%s = %d; %s <= %d; %s++) {%s}");
   const size_t bufferLen = strlen(var) + countDigits(min) + countDigits(max) + strlen(block) + tokenLen + 1;
   char *buffer = malloc(bufferLen);
-  snprintf(buffer, bufferLen, "for(int %s = %d; %s <= %d; %s++) {%s}", var, min, var, max, var, block);
+  snprintf(buffer, bufferLen, "for(%s_ = %d; %s <= %d; %s_++) {%s}", var, min, var, max, var, block);
 
   return buffer;
 }
