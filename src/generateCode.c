@@ -327,10 +327,7 @@ char *reduceStringNode(Node *node)
 
 char *reduceStackNode(Node *node)
 {
-  listADT auxlist = newList();
-  node
-
-
+return 0;
 
 }
 
