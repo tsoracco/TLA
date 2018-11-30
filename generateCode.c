@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "generateCode.h"
+#include "linkedList.h"
 
 static definedVar vars[MAX_VARS];
 
@@ -22,7 +23,10 @@ reductor reductors[] = {
     reduceInstrListNode,
     reduceInstrNode,
     reduceNotNode,
-    reducePrintNode};
+    reducePrintNode
+    reduceStackNode,
+    reduceQueueNode
+  };
 
 char *reduceStringNode(Node *node)
 {
@@ -306,6 +310,27 @@ char *reducePrintNode(Node *node)
   snprintf(buffer, bufferLen, "printf(\"%s\", %s);\n", param, exp);
 
   return buffer;
+}
+
+char *reduceStringNode(Node *node)
+{
+  char *value = ((StringNode *)node)->str;
+
+  const size_t bufferLen = strlen(value) + 1;
+  char *buffer = malloc(bufferLen);
+  snprintf(buffer, bufferLen, "%s", value);
+
+  return buffer;
+}
+
+char *reduceStackNode(Node *node)
+{
+  listADT list = newList(); 
+}
+
+
+char *reduceQueueNode(Node *node){
+  
 }
 
 //Toma el node y llama al reductor correspondiente al type

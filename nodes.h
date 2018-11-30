@@ -1,5 +1,7 @@
 #ifndef _NODES_H
-#define _NODES_H
+#define 
+
+#include "linkedList.h"
 
 typedef enum
 {
@@ -17,7 +19,9 @@ typedef enum
   INSTR_LIST_NODE,
   INSTR_NODE,
   NOT_NODE,
-  PRINT_NODE
+  PRINT_NODE,
+  STACK_NODE,
+  QUEUE_NODE
 } NodeType;
 
 typedef struct Node
@@ -122,5 +126,19 @@ typedef struct PrintNode
   NodeType type;
   Node *exp;
 } PrintNode;
+
+typedef struct StackNode
+{
+  NodeType type;
+  listADT list;
+  int size;
+} StackNode;
+
+typedef struct QueueNode
+{
+  NodeType type;
+  listADT list;
+  int size;
+} QueueNode;
 
 #endif

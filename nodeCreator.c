@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "nodeCreator.h"
+#include "linkedList.h"
 
 StringNode *toString(const char *str)
 {
@@ -96,7 +97,7 @@ NodeList *addInstr(const NodeList *list, const Node *node)
   NodeList *actual = (NodeList *)list;
   while (actual->next != NULL)
     actual = actual->next;
-  actual->next = listaInstrucciones(node);
+  actual->next = instrList(node);
 
   return (NodeList *)list;
 }
@@ -124,7 +125,7 @@ Node *empty()
   return node;
 }
 
-InstrNode *instruccion(Node *instruccion)
+InstrNode *toInstr(Node *instr)
 {
   InstrNode *node = malloc(sizeof(InstrNode));
   node->type = INSTR_NODE;
@@ -145,5 +146,26 @@ PrintNode *print(Node *exp)
   PrintNode *node = malloc(sizeof(PrintNode));
   node->type = PRINT_NODE;
   node->exp = exp;
+  return node;
+}
+
+StackNode *toStack(Node *cons)
+{
+  StackNode *node = malloc(sizeof(StackNode));
+  node->type = STACK_NODE;
+  node->list = newList();
+  ret = push(node->list, cons->cons, sizeof(cons->cons));
+  node->size = ret;
+  return node;
+}
+
+QueueNode *toQueue(Node *cons)
+{
+  QueueNode *node = malloc(sizeof(QueueNode));
+  node->type = QUEUE_NODE;
+  node->list = newList();
+  ret = queue(node->list, cons->cons, sizeof(cons->cons));
+  node->size = ret;
+  node->size = 0;
   return node;
 }

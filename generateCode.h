@@ -29,6 +29,8 @@ char *reduceInstrListNode(Node *node);
 char *reduceInstNode(Node *node);
 char *reduceNotNode(Node *node);
 char *reducePrintNode(Node *node);
+char *reduceStackNode(Node *node);
+char *reduceQueueNode(Node *node);
 
 static char *eval(Node *node);
 int countDigits(int n);
