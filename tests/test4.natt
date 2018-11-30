@@ -1,19 +1,12 @@
-first = 2
-second = 4
-a = 0
-b = 1
-text=""
+first = 1
+second = 2
+text = ""
 
-if(first < second && !a) do
-	text="less"
+if(first < second) do
+	text = "less"
 end
 else do
-	text="more"
+	text = "more"
 end
 
-print(text)
-
-if(b)
-	text="changed"
-
-print(text)
+imprimir(text)
