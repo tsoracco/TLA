@@ -1,5 +1,5 @@
 #ifndef _NODES_H
-#define 
+#define _NODES_H
 
 #include "linkedList.h"
 

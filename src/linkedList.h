@@ -1,6 +1,9 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
+#include <stdlib.h>
+#include <stddef.h>
+
 typedef struct listCDT* listADT;
 
 typedef struct listNodeT{
