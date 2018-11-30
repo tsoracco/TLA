@@ -91,7 +91,7 @@ typedef struct ForNode
   int min;
   int max;
   Node *block;
-} WhileNode;
+} ForNode;
 
 typedef struct RetNode
 {
