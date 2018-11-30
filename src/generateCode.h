@@ -26,7 +26,7 @@ char *reduceWhileNode(Node *node);
 char *reduceForNode(Node *node);
 char *reduceRetNode(Node *node);
 char *reduceInstrListNode(Node *node);
-char *reduceInstNode(Node *node);
+char *reduceInstrNode(Node *node);
 char *reduceNotNode(Node *node);
 char *reducePrintNode(Node *node);
 char *reduceStackNode(Node *node);

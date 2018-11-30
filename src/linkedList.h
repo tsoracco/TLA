@@ -23,6 +23,4 @@ int push(listADT list, void * element, size_t size);
 int pop(listADT list);
 int isEmpty(listADT list);
 
-
-
 #endif
