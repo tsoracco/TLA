@@ -1,8 +1,10 @@
 
-Compiler/lex\.yy\.c
+src/compiler
 
-Compiler/y\.output
+src/lex\.yy\.c
 
-Compiler/y\.tab\.c
+src/y\.output
 
-Compiler/y\.tab\.h
+src/y\.tab\.c
+
+src/y\.tab\.h
