@@ -23,6 +23,7 @@ char *reduceBlockNode(Node *node);
 char *reduceEmptyNode(Node *node);
 char *reduceIfNode(Node *node);
 char *reduceWhileNode(Node *node);
+char *reduceForNode(Node *node);
 char *reduceRetNode(Node *node);
 char *reduceInstrListNode(Node *node);
 char *reduceInstNode(Node *node);
@@ -31,5 +32,7 @@ char *reducePrintNode(Node *node);
 
 static char *eval(Node *node);
 char *generateCode(Node *node);
+
+int countDigits(int n);
 
 #endif

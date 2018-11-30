@@ -37,8 +37,8 @@ OpNode *valOp(const Node *first, const Node *sec, const char *op)
   node->type = OP_NODE;
   node->first = (Node *)first;
   node->sec = (Node *)sec;
-  node->op = calloc(strlen(op) + 1, sizeof(char));
-  strcpy(node->op, op);
+  node->operator = calloc(strlen(op) + 1, sizeof(char));
+  strcpy(node->operator, op);
   return node;
 }
 
@@ -71,23 +71,34 @@ WhileNode *toWhile(const Node *cond, const Node *block)
   return node;
 }
 
-ListNode *instrList(const Node *node)
+ForNode *toFor(const char *var, const int min, const int max, const Node *block)
 {
-  ListNode *list = malloc(sizeof(ListNode));
+  ForNode *node = malloc(sizeof(ForNode));
+  node->type = FOR_NODE;
+  node->var = var;
+  node->min = min;
+  node->max = max;
+  node->block = (Node *)block;
+  return node;
+}
+
+NodeList *instrList(const Node *node)
+{
+  NodeList *list = malloc(sizeof(NodeList));
   list->type = INSTR_LIST_NODE;
   list->node = (Node *)node;
   list->next = NULL;
   return list;
 }
 
-ListNode *addInstr(const ListNode *list, const Node *node)
+NodeList *addInstr(const NodeList *list, const Node *node)
 {
-  ListNode *actual = (ListNode *)list;
+  NodeList *actual = (NodeList *)list;
   while (actual->next != NULL)
     actual = actual->next;
   actual->next = listaInstrucciones(node);
 
-  return (ListNode *)list;
+  return (NodeList *)list;
 }
 
 RetNode *ret(const Node *exp)
@@ -98,11 +109,11 @@ RetNode *ret(const Node *exp)
   return node;
 }
 
-BlockNode *block(const ListNode *instr)
+BlockNode *block(const NodeList *instr)
 {
   BlockNode *node = malloc(sizeof(BlockNode));
   node->type = BLOCK_NODE;
-  node->instr = (ListNode *)instr;
+  node->instr = (NodeList *)instr;
   return node;
 }
 

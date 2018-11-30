@@ -12,40 +12,41 @@ typedef enum
   EMPTY_NODE,
   IF_NODE,
   WHILE_NODE,
+  FOR_NODE,
   RET_NODE,
   INSTR_LIST_NODE,
   INSTR_NODE,
   NOT_NODE,
   PRINT_NODE
-} nodeType;
+} NodeType;
 
 typedef struct Node
 {
-  nodeType type;
+  NodeType type;
 } Node;
 
-typedef struct nodeList
+typedef struct NodeList
 {
-  nodeType type;
+  NodeType type;
   Node *node;
   struct nodeList *next;
-} nodeList;
+} NodeList;
 
 typedef struct StringNode
 {
-  nodeType type;
+  NodeType type;
   char *str;
 } StringNode;
 
 typedef struct ConstNode
 {
-  nodeType type;
+  NodeType type;
   char *cons;
 } ConstNode;
 
 typedef struct VarNode
 {
-  nodeType type;
+  NodeType type;
   int defined;
   char *name;
   Node *stored;
@@ -54,15 +55,15 @@ typedef struct VarNode
 
 typedef struct OpNode
 {
-  nodeType type;
+  NodeType type;
   Node *first;
   Node *sec;
-  char *operador;
+  char *operator;
 } OpNode;
 
 typedef struct CondNode
 {
-  nodeType type;
+  NodeType type;
   Node *first;
   Node *sec;
   Node *third;
@@ -70,7 +71,7 @@ typedef struct CondNode
 
 typedef struct IfNode
 {
-  nodeType type;
+  NodeType type;
   Node *cond;
   Node *then;
   Node *ifnot;
@@ -78,38 +79,47 @@ typedef struct IfNode
 
 typedef struct WhileNode
 {
-  nodeType type;
+  NodeType type;
   Node *cond;
+  Node *block;
+} WhileNode;
+
+typedef struct ForNode
+{
+  NodeType type;
+  char *var;
+  int min;
+  int max;
   Node *block;
 } WhileNode;
 
 typedef struct RetNode
 {
-  nodeType type;
+  NodeType type;
   Node *exp;
 } RetNode;
 
 typedef struct BlockNode
 {
-  nodeType type;
-  nodeList *instr;
+  NodeType type;
+  NodeList *instr;
 } BlockNode;
 
 typedef struct InstrNode
 {
-  nodeType type;
+  NodeType type;
   Node *instr;
 } InstrNode;
 
 typedef struct NotNode
 {
-  nodeType type;
+  NodeType type;
   Node *exp;
 } NotNode;
 
 typedef struct PrintNode
 {
-  nodeType type;
+  NodeType type;
   Node *exp;
 } PrintNode;
 
