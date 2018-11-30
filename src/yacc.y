@@ -28,7 +28,7 @@
 %type <node> and_op or_op cond_op
 %type <node> assign_op exp block cond_block
 %type <node> cycle_block ret_block print_block
-%type <node> basic_exp constant var_exp
+%type <node> basic_exp constant_exp var_exp
 %type <node> queue stack elements element_list
 
 %type <string> assign_operator rel_operator ASSIGN MULT_ASSIGN DIV_ASSIGN SUM_ASSIGN SUB_ASSIGN
@@ -43,7 +43,7 @@
 %%
 
 primary_exp:
-	  const { $$ = $1; }
+	  constant_exp { $$ = $1; }
 	| STRING { $$ = valString($1); }
 	| PARENTH_OPEN exp PARENTH_CLOSE { $$ = $2; }
 	| queue { $$ = $1; }
@@ -60,15 +60,15 @@ stack:
 
 element_list:
 			/* empty*/ {}
-			| elements { $$ = $1 }
+			| elements { $$ = $1; }
 			;
 
 elements:
-		NUMBER COMMA elements { $$ = $3 }
-		| const { $$ = $1 }
+		NUMBER COMMA elements { $$ = $3; }
+		| constant_exp { $$ = $1; }
 		;
 
-const:
+constant_exp:
 	NUMBER { $$ = valConstant($1); }
 	;
 
@@ -176,7 +176,7 @@ cond_block:
 
 cycle_block:
 	  WHILE PARENTH_OPEN exp PARENTH_CLOSE braces { $$ = toWhile($3, $5); }
-	| FOR PARENTH_OPEN VAR IN NUMBER TWO_DOTS NUMBER PARENTH_CLOSE braces { $$ = toFor($3, $5, $8, $10); }
+	| FOR PARENTH_OPEN VAR IN NUMBER TWO_DOTS NUMBER PARENTH_CLOSE braces { $$ = toFor($3, $5, $7, $9); }
 	;
 
 ret_block:

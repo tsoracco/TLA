@@ -1,4 +1,6 @@
 
+src/compiler
+
 src/lex\.yy\.c
 
 src/y\.output
