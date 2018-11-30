@@ -1,9 +1,9 @@
 origin = 3
 destination = 0
 
-while(origin > 0) do
+while(origin > 0){
 	origin -= 1
 	destination += 1
-end
+}
 
 print(destination)

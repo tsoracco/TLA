@@ -150,8 +150,8 @@ block:
 	;
 
 braces:
-	 DO END { $$ = instrList(NULL); }
-	| DO instructions END { $$ = $2; }
+	 OPEN_BRACE CLOSE_BRACE { $$ = instrList(NULL); }
+	| OPEN_BRACE instructions CLOSE_BRACE { $$ = $2; }
 	;
 
 instructions:
@@ -166,7 +166,7 @@ cond_block:
 
 cycle_block:
 	  WHILE PARENTH_OPEN exp PARENTH_CLOSE braces { $$ = toWhile($3, $5); }
-	| FOR PARENTH_OPEN VAR IN NUMBER TWO_DOTS NUMBER PARENTH_CLOSE braces { $$ = toFor($3, $5, $8, $10); }
+	| FOR PARENTH_OPEN VAR IN NUMBER TWO_DOTS NUMBER PARENTH_CLOSE braces { $$ = toFor($3, $5, $7, $9); }
 	;
 
 ret_block:

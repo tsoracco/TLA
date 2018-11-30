@@ -4,16 +4,16 @@ a = 0
 b = 1
 text=""
 
-if(first < second && !a) do
+if(first < second && !a) {
 	text="less"
-end
-else do
+}
+if(first > second && !a){
 	text="more"
-end
+}
 
 print(text)
 
-if(b)
+if( !(!b) ){
 	text="changed"
-
+}
 print(text)

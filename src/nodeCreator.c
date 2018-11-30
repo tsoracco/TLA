@@ -77,8 +77,8 @@ ForNode *toFor(const char *var, const int min, const int max, const Node *block)
   ForNode *node = malloc(sizeof(ForNode));
   node->type = FOR_NODE;
   node->var = var;
-  node->min = min;
-  node->max = max;
+  node->min = atoi(min);
+  node->max = atoi(max);
   node->block = (Node *)block;
   return node;
 }

@@ -2,11 +2,11 @@ first = 1
 second = 2
 text = ""
 
-if(first < second) do
+if(first < second){
 	text = "less"
-end
-else do
+}
+if(first > second){
 	text = "more"
-end
+}
 
-imprimir(text)
+print(text)
