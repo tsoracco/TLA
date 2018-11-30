@@ -17,7 +17,7 @@ reductor reductors[] = {
     reduceEmptyNode,
     reduceIfNode,
     reduceWhileNode,
-    reduceForNode
+    reduceForNode,
     reduceRetNode,
     reduceInstrListNode,
     reduceInstrNode,
@@ -82,12 +82,12 @@ char *reduceOpNode(Node *node)
 
   char *first = eval(nodeValue->first);
   char *sec = eval(nodeValue->sec);
-  char *op = nodeValue->op;
+  char *op = nodeValue->operator;
   char *buffer;
 
-  if (nodeValue->first->type == VAR_NODE && strcmp(nodeValue->op, "=") == 0
-     || strcmp(nodeValue->op, "+=") == 0 || strcmp(nodeValue->op, "-=") == 0
-     || strcmp(nodeValue->op, "/=") == 0 || strcmp(nodeValue->op, "*=") == 0)
+  if (nodeValue->first->type == VAR_NODE && strcmp(nodeValue->operator, "=") == 0
+     || strcmp(nodeValue->operator, "+=") == 0 || strcmp(nodeValue->operator, "-=") == 0
+     || strcmp(nodeValue->operator, "/=") == 0 || strcmp(nodeValue->operator, "*=") == 0)
   {
     definedVar *var = varFind(((VarNode *)nodeValue->first)->name);
 
@@ -251,7 +251,7 @@ char *reduceInstrListNode(Node *node)
     buffer = realloc(buffer, strlen(aux) + strlen(buffer) + tokenLen + 1);
     strcat(buffer, aux);
 
-  } while ((list = list->siguiente) != NULL);
+  } while ((list = list->next) != NULL);
 
   return buffer;
 }
