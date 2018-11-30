@@ -29,6 +29,7 @@
 %type <node> assign_op exp block cond_block
 %type <node> cycle_block ret_block print_block
 %type <node> basic_exp constant var_exp
+%type <node> queue stack elements element_list
 
 %type <string> assign_operator rel_operator ASSIGN MULT_ASSIGN DIV_ASSIGN SUM_ASSIGN SUB_ASSIGN
 %type <string> VAR STRING NUMBER
@@ -45,7 +46,27 @@ primary_exp:
 	  const { $$ = $1; }
 	| STRING { $$ = valString($1); }
 	| PARENTH_OPEN exp PARENTH_CLOSE { $$ = $2; }
+	| queue { $$ = $1; }
+	| stack { $$ = $1;}
 	;
+
+queue:
+	LESS element_list GREATER { $$ = $2; }
+	;
+
+stack:
+	OPEN_BRACE element_list CLOSE_BRACE { $$ = $2; }
+	;
+
+element_list:
+			/* empty*/ {}
+			| elements { $$ = $1 }
+			;
+
+elements:
+		NUMBER COMMA elements { $$ = $3 }
+		| const { $$ = $1 }
+		;
 
 const:
 	NUMBER { $$ = valConstant($1); }
