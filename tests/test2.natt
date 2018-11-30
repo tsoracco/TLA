@@ -1,5 +1,5 @@
-first = 1
-second = 2
+first = 3
+second = 5
 
 result = (first > second ? first : second)
 
