@@ -132,6 +132,7 @@ typedef struct StackNode
   NodeType type;
   listADT list;
   int size;
+  int aux;
 } StackNode;
 
 typedef struct QueueNode
@@ -139,6 +140,7 @@ typedef struct QueueNode
   NodeType type;
   listADT list;
   int size;
+  int aux;
 } QueueNode;
 
 #endif

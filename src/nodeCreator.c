@@ -149,23 +149,22 @@ PrintNode *print(Node *exp)
   return node;
 }
 
-StackNode *toStack(ConstNode *cons)
+StackNode *toStack(const char *cons)
 {
   StackNode *node = malloc(sizeof(StackNode));
   node->type = STACK_NODE;
-  node->list = newList();
-  int ret = push(node->list, cons->cons, sizeof(cons->cons));
-  node->size = ret;
+  node->size = 0;
+  node->aux = calloc(strlen(cons) + 1, sizeof(char));
+  strcpy(node->aux, cons);
   return node;
 }
 
-QueueNode *toQueue(ConstNode *cons)
+QueueNode *toQueue(const char *cons)
 {
   QueueNode *node = malloc(sizeof(QueueNode));
   node->type = QUEUE_NODE;
-  node->list = newList();
-  int ret = queue(node->list, cons->cons, sizeof(cons->cons));
-  node->size = ret;
   node->size = 0;
+  node->aux = calloc(strlen(cons) + 1, sizeof(char));
+  strcpy(node->aux, cons);
   return node;
 }
