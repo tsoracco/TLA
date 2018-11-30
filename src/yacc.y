@@ -28,7 +28,7 @@
 %type <node> and_op or_op cond_op
 %type <node> assign_op exp block cond_block
 %type <node> cycle_block ret_block print_block
-%type <node> basic_exp constant var_exp
+%type <node> basic_exp const var_exp
 %type <node> queue stack /*no se si es correcto este type*/
 
 %type <string> assign_operator rel_operator ASSIGN MULT_ASSIGN DIV_ASSIGN SUM_ASSIGN SUB_ASSIGN
