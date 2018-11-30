@@ -34,6 +34,6 @@ FILE_DESTINATION_REAL_PATH=$(pwd)/${FILE_DESTINATION}
 FILE_SOURCE_REAL_PATH=$(pwd)/${FILE_SOURCE}
 
 # generate the code
-cd src/generador
-./generador < ${FILE_SOURCE_REAL_PATH} > ${FILE_DESTINATION_REAL_PATH}
+cd src
+./compiler < ${FILE_SOURCE_REAL_PATH} > ${FILE_DESTINATION_REAL_PATH}
 cd ../..

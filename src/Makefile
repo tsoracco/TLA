@@ -1,4 +1,4 @@
-TARGET = generador
+TARGET = compiler
 CC = gcc
 CFLAGS = -w
 
