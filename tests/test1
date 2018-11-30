@@ -1,0 +1,9 @@
+origin = 3
+destination = 0
+
+while(origen > 0){
+	origin -= 1
+	destination += 1
+}
+
+print(destination)
