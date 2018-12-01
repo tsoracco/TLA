@@ -1,0 +1,133 @@
+<<primary_exp>>: 
+			<const> 
+			| <STRING> 
+			| <PARENTH_OPEN> <exp> <PARENTH_CLOSE>
+			;
+
+<queue>:
+	<LESS> <const> <GREATER>
+	;
+
+<stack>:
+	<OPEN_BRACE> <const> <CLOSE_BRACE>
+	;
+
+<const>:
+	<NUMBER> 
+	;
+
+<var_exp>:
+	<VAR> 
+	;
+
+<r_exp>:
+	  <primary_exp>
+	| <var_exp> 
+	;
+
+<basic_exp>:
+	  <r_exp> 
+	| <NOT> <r_exp> 
+	;
+
+<mult_op>:
+	  <basic_exp> 
+	| <mult_op> <MULT> <basic_exp>
+	| <mult_op> <DIV> <basic_exp> 
+	| <mult_op> <MOD> <basic_exp> 
+	;
+
+<sum_op>:
+	  <mult_op> 
+	| <sum_op> <SUM> <mult_op> 
+	| <sum_op> <SUB> <mult_op> 
+	;
+
+<rel_op>:
+	  <sum_op> 
+	| <rel_op> <rel_operator> <rel_op> 
+	;
+
+<rel_operator>:
+	  <LESS> 
+	| <GREATER> 
+	| <LEQ_OP> 
+	| <GEQ_OP> 
+	;
+
+<eq_op>:
+	  <rel_op> 
+	| <eq_op> <EQUAL_OP> <rel_op> 
+	| <eq_op> <NOT_EQUAL_OP> <rel_op> 
+	;
+
+<and_op>:
+	  <eq_op> 
+	| <and_op> <AND_OP> <eq_op> 
+	;
+
+<or_op>:
+	  <and_op> 
+	| <or_op> <OR_OP> <and_op> 
+	;
+
+<cond_op>:
+	  <or_op>
+	| <or_op> <THEN> <exp> <COLON> <cond_op> 
+	;
+
+<assign_op>:
+	  <cond_op> 
+	| <var_exp> <assign_operator> <queue> 
+	| <var_exp> <assign_operator> <stack> 
+	| <var_exp> <assign_operator> <assign_op> 
+	;
+
+<assign_operator>:
+	  <ASSIGN> 
+	| <MULT_ASSIGN> 
+	| <DIV_ASSIGN> 
+	| <SUM_ASSIGN> 
+	| <SUB_ASSIGN> 
+	;
+
+<exp>:
+	<assign_op> 
+	;
+
+<block>:
+	  <braces> 
+	| <cond_block> 
+	| <cycle_block> 
+	| <ret_block> 
+	| <print_block> 
+	| <exp>  
+	| <NEWLINE> 
+	;
+
+<braces>:
+	 <OPEN_BRACE> <CLOSE_BRACE> 
+	| <OPEN_BRACE> <instructions> <CLOSE_BRACE> 
+	;
+
+<instructions>:
+	  <block> 
+	| <instructions> <block> 
+	;
+
+<cond_block>:
+	  <IF> <PARENTH_OPEN> <exp> <PARENTH_CLOSE> <braces> 
+	| <IF> <PARENTH_OPEN> <exp> <PARENTH_CLOSE> <braces> <ELSE> <braces> 
+	;
+
+<cycle_block>:
+	  <WHILE> <PARENTH_OPEN> <exp> <PARENTH_CLOSE> <braces> 
+	| <FOR> <PARENTH_OPEN> <VAR> <IN> <NUMBER> <TWO_DOTS> <NUMBER> <PARENTH_CLOSE> <braces> 
+	;
+
+<ret_block>:
+	<RETURN> <PARENTH_OPEN> <exp> <PARENTH_CLOSE> 
+
+<print_block>:
+	<PRINT> <PARENTH_OPEN> <exp> <PARENTH_CLOSE>
+	;

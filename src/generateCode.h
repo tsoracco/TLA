@@ -3,8 +3,8 @@
 
 #include "nodeCreator.h"
 
-#define MAX_VARS 20
-#define MAX_VAR_LEN 20
+#define MAX_VARS 30
+#define MAX_VAR_LEN 30
 
 typedef struct definedVar
 {

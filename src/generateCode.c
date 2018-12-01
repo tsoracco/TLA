@@ -311,32 +311,30 @@ char *reducePrintNode(Node *node)
 
   return buffer;
 }
-/*
 
-char *reduceStringNode(Node *node)
-{
-  char *value = ((StringNode *)node)->str;
-
-  const size_t bufferLen = strlen(value) + 1;
-  char *buffer = malloc(bufferLen);
-  snprintf(buffer, bufferLen, "%s", value);
-
-  return buffer;
-}
-*/
 
 char *reduceStackNode(Node *node)
 {
-return 0;
+  StackNode *nodeValue = (StackNode *)node;
+
+  nodeValue->list = newList();
+  int ret = push(nodeValue->list, atoi(nodeValue->aux), sizeof(int));
+  nodeValue->size = ret;
+
+  return nodeValue->list;
 
 }
 
 
 char *reduceQueueNode(Node *node)
 {
+  QueueNode *nodeValue = (QueueNode *)node;
 
-  return 0;
-  
+  nodeValue->list = newList();
+  int ret = queue(nodeValue->list, atoi(nodeValue->aux), sizeof(int));
+  nodeValue->size = ret;
+
+  return nodeValue->list;
 }
 
 //Toma el node y llama al reductor correspondiente al type
