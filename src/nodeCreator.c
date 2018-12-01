@@ -72,13 +72,15 @@ WhileNode *toWhile(const Node *cond, const Node *block)
   return node;
 }
 
-ForNode *toFor(const char *var, const int min, const int max, const Node *block)
+ForNode *toFor(const char *var, const char* min, const char* max, const Node *block)
 {
   ForNode *node = malloc(sizeof(ForNode));
   node->type = FOR_NODE;
   node->var = var;
-  node->min = atoi(min);
-  node->max = atoi(max);
+  node->min = calloc(strlen(min) + 1, sizeof(char));
+  node->max = calloc(strlen(max) + 1, sizeof(char));
+  strcpy(node->min, min);
+  strcpy(node->max, max);
   node->block = (Node *)block;
   return node;
 }

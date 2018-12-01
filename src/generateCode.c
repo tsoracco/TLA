@@ -208,8 +208,8 @@ char *reduceForNode(Node *node)
   ForNode *nodeValue = (ForNode *)node;
 
   char *var = nodeValue->var;
-  int min = atoi(nodeValue->min);
-  int max = atoi(nodeValue->max);
+  char *min = atoi(nodeValue->min);
+  char *max = atoi(nodeValue->max);
   char *block = eval(nodeValue->block);
 
   const size_t tokenLen = strlen("for(%s_ = %d; %s_ <= %d; %s_++) {%s}");
