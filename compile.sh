@@ -35,6 +35,6 @@ FILE_SOURCE_REAL_PATH=$(pwd)/${FILE_SOURCE}
 
 # generate the code
 cd src
-./compiler < ${FILE_SOURCE_REAL_PATH} > ${FILE_DESTINATION_REAL_PATH}
+./compiler < "${FILE_SOURCE_REAL_PATH}" > "${FILE_DESTINATION_REAL_PATH}"
 cd ../..
 
